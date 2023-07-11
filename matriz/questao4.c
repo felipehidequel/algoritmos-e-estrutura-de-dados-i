@@ -65,7 +65,8 @@ int main(void){
         char nome[MAX_TAMANHO_NOMES];
 
         printf("Digite o nome completo da pessoa %d: ", pessoa + 1);
-        fgets(nome, MAX_TAMANHO_NOMES, stdin);
+        // fgets(nome, MAX_TAMANHO_NOMES, stdin);
+        scanf("%s", nome);
     
 
         // Alocando memória para o nome e armazenando na matriz
