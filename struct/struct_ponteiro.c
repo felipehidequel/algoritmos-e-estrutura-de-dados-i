@@ -24,18 +24,23 @@ int main(void){
 
     Aluno* aluno = (Aluno*) malloc(sizeof(Aluno));
     isAlloc(aluno, "aluno");
-    aluno->disciplina = (Disciplina*) malloc(sizeof(Disciplina));
+    aluno->disciplina = (Disciplina*) malloc(2*sizeof(Disciplina));
 
     printf("Digite o nome: \n");
     scanf(" %[^\n]", aluno->nome);
     printf("Digite a matricula: \n");
     scanf("%d", &aluno->matricula);
-    printf("Digite o nome da disciplina: \n");
-    scanf(" %[^\n]", aluno->disciplina->nome);
+
+    printf("Digite o nome das disciplinas: \n");
+    for (int i = 0; i < 2; i++){
+        scanf(" %[^\n]", aluno->disciplina[i].nome);
+    }
+    
+    
 
     printf("Dados: \n");
-    printf("\tNome: %s \n\tMatricula: %d \n\tDisciplina: %s \n", 
-    aluno->nome, aluno->matricula, aluno->disciplina->nome);
+    printf("\tNome: %s \n\tMatricula: %d \n\tDisciplinas:\n \t%s \n\t%s \n", 
+    aluno->nome, aluno->matricula, aluno->disciplina[0].nome, aluno->disciplina[1].nome);
 
     free(aluno->disciplina);
     free(aluno);
