@@ -8,3 +8,19 @@
 // d) Escreva uma função que receba como parâmetro um vetor de estruturas do tipo Funcionario e
 // imprima o cargo e salário do Funcionario com maior salário e o cargo e salário do funcionário
 // com o menor salário.
+#include <stdio.h>
+
+#define MAX_CARACTERES 20
+
+#define isAlloc(v, s)                               \
+    if ((v) == NULL) {                               \
+        printf("Erro ao alocar memoria para " s "\n");\
+        exit(1);                                       \
+}
+
+tydedef struct funcionario{
+    char nome[MAX_CARACTERES];
+    float salario;
+    int identificador;
+    char cargo[MAX_CARACTERES];
+}
