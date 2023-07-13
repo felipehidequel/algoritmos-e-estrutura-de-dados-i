@@ -21,22 +21,22 @@ typedef struct pessoa
 // Função para cortar linha
 void cortaLinha();
 /*
-Função usada pra preencher campos de estrutura do tipo Pessoa
+Função usada pra preencher campos de estrutura do tipo Pessoa.
 Input: Pessoa * pessoa
 */
 void preenchePessoa(Pessoa * pessoa);
 /*
-Função usada para imprimir camopos de estrutura do tipo Pessoa
+Função usada para imprimir camopos de estrutura do tipo Pessoa.
 Input: Pessoa * pessoa
 */
 void imprimePessoa(Pessoa * pessoa);
 /*
-Função que altera o campo idade de estrutura do tipo Pessoa
+Função que altera o campo idade de estrutura do tipo Pessoa.
 */
 void alteraIdade(Pessoa * pessoa);
 /*
 Função que recebe como argumento um vetor do tipo Pessoa e retorna a instancia
-com maior idade e menor idade
+com maior idade e menor idade.
 Input: Pessoa *Pessoas (tem que ser um vetor), qtd_de_pessoas (numero de indices do vetor)
 */
 void maior_menor_idade(Pessoa *pessoas, int qtd_pessoas);
