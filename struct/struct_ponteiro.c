@@ -53,3 +53,10 @@ Aluno* cadastra_aluno(void){
 
     return aluno;
 }
+
+void cortaLinha(){
+    for (int i = 0; i<21; i++){
+        printf("=");
+    }
+    printf("\n");
+}

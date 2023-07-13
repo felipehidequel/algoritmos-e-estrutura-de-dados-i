@@ -40,7 +40,7 @@ void alteraSalario(Funcionario * funcionario);
 /*Função que pecorre veotr do tipo Funcionario e imprime o funcionario com menor salario e
 o funcionario com maior salario, e seus respectivos salarios*/
 void maior_menor_salario(Funcionario *funcionarios, int qtd_funcionarios);
-
+// Utilities
 void cortaLinha();
 
 int main(void){    
