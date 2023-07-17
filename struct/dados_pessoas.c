@@ -41,8 +41,13 @@ Input: Pessoa *Pessoas (tem que ser um vetor), qtd_de_pessoas (numero de indices
 */
 void maior_menor_idade(Pessoa *pessoas, int qtd_pessoas);
 
-int main(void){
-    int qtd_pessoas = 2;
+int main(void){    
+    int qtd_pessoas = 1;
+
+    cortaLinha();
+    printf("Informe a quantidade de contas a serem criadas: \n");
+    scanf("%d", &qtd_pessoas);
+    
     Pessoa* pessoas = (Pessoa*) malloc (qtd_pessoas*sizeof(Pessoa));
     
     for (int pessoa=0; pessoa < qtd_pessoas; pessoa++){
