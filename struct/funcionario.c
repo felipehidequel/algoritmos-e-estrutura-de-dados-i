@@ -104,7 +104,7 @@ void alteraSalario(Funcionario * funcionario){
 
     salario_antigo = funcionario->salario;
 
-    printf("Digite o novo salário para o funcionario: \n");
+    printf("Digite o novo salário para o funcionario %s: \n", funcionario->nome);
     scanf("%f", &funcionario->salario);
     novo_salario = funcionario->salario;
 
