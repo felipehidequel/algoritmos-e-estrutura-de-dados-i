@@ -14,7 +14,7 @@
 typedef struct contaBancaria{
     char nome[MAX_CARACTERES];
     int num_conta;
-    float saldo = 0.0;
+    float saldo;
 }ContaBancaria;
 
 /*Função usada para preencher campos de uma estutura do tipo 
@@ -30,9 +30,14 @@ int main(void){
 
     ContaBancaria * usuarios = (ContaBancaria*) malloc (qtdContas * sizeof(ContaBancaria));
 
-    for (int usuario = 0; usuario<usuarios; usuario++){
+    for (int usuario = 0; usuario<qtdContas; usuario++){
         printf("\t\tUsuario %d\n", usuario+1);
-        preencheConta(usuarios[usuario]);
+        preencheConta(&usuarios[usuario]);
+    }
+
+    for (int usuario = 0; usuario<qtdContas; usuario++){
+        printf("\t\tUsuario %d\n", usuario+1);
+        imprimeConta(&usuarios[usuario]);
     }
 
     return 0;
@@ -40,26 +45,21 @@ int main(void){
 
 void preencheConta(ContaBancaria * usuario){
     printf("Informe os seguintes dados de usuario: \n");
-    printf("\tnome: ");
+    printf("nome: ");
     scanf(" %[^\n]", usuario->nome);
     printf("\n");
 
-    printf("\tNúmero da conta: ");
+    printf("Número da conta: ");
     scanf("%d", &usuario->num_conta);
     printf("\n");
 
-    printf("\tSaldo: ");
+    printf("Saldo: ");
     scanf("%f", &usuario->saldo);
     printf("\n");
 }
 void imprimeConta(ContaBancaria * usuario){
     printf("Dados de usuario: \n");
-    printf("\tnome: %s\n", usuario->nome);
-    printf("\tNúmero da conta: %d\n", usuario->num_conta);
-    printf("\tSaldo: %.2f\n", usuario->saldo);
-}
-
-
-void sacar(ContaBancaria * usuario){
-    return 0;
+    printf("nome: %s\n", usuario->nome);
+    printf("Número da conta: %d\n", usuario->num_conta);
+    printf("Saldo: %.2fR$\n", usuario->saldo);
 }
