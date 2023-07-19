@@ -7,10 +7,10 @@
 
 /*Estutura do tipo aluno*/
 typedef struct aluno{
-    int mat;
-    char nome[81];
-    char end[121];
-    char tel[21];
+    int mat; // número de matricula
+    char nome[81]; // nome
+    char end[121]; // endereço
+    char tel[21]; // telefone
 }Aluno;
 
 /*Função que inicializa vetor do tipo Aluno com o valor NULL*/
@@ -27,17 +27,18 @@ void imprime_tudo(int n, Aluno** tab);
 
 int main(void){
     Aluno* tab[MAX];
-
+    // inicializa vetor
     incializa(MAX, tab);
+    // preenchendo campos de vetor no indice 0, 1 e 2
     preenche(MAX, tab, 0);
     preenche(MAX, tab, 1);
     preenche(MAX, tab, 2);
+    // imprime os vetores preenchidos para o usuario
     imprime_tudo(MAX, tab);
+    // liberando campos preenchidos
     retira(MAX, tab, 0);
     retira(MAX, tab, 1);
     retira(MAX, tab, 2);
-
-
 
     return 0;
 }
