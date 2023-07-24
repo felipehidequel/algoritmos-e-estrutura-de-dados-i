@@ -79,7 +79,9 @@ Turma* cria_turma(char id){
 }
 
 void matricula_aluno(Turma* turma, int mat, char* nome){
-    
+    ch num_turma;
+    printf("Informe a turma para matricula:");
+    scanf("%d", &);
 
     return 0;
 }
