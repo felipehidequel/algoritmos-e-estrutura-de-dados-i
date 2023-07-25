@@ -4,6 +4,7 @@ tipo deve ser armazenado como uma union que armazena um dos tipos: ALIMENTO, BEB
 ELETRONICO. O programa deve ler os dados de um produto e imprimir os dados do produto
 */
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define MAX_CHARS 20
@@ -23,6 +24,7 @@ typedef struct produto{
 
 // função que ler os dados de um produto
 void leia(Produto * produto){
+    char tipo;
     char n[MAX_CHARS];
     printf("Digite o nome do produto: \n");
     scanf(" %[^\n]", n);
@@ -30,13 +32,32 @@ void leia(Produto * produto){
     printf("Digite o preço do produto: \n");
     scanf("%f", &produto->preco);
     printf("Digite o tipo do produto [Alimento (A), Bebida(B) ou Eletronico (E)]: \n");
-    scanf("%c", produto->tipo);
+    scanf(" %c", tipo);
+
+    if(tipo == 'A'){
+        strcpy(produto->tipo.alimento, tipo);
+    }else if (tipo == 'B'){
+        strcpy(produto->tipo.bebida, tipo);
+    }else if(tipo == 'E'){
+        strcpy(produto->tipo.eletronico, tipo);
+    }else{
+        printf("Entrada invalida!");
+        exit(1);
+    }
+}
+
+void imprima(Produto * produto){
+    printf("\tDados\n");
+    printf("Nome: %s \n", produto->nome);
+    printf("Preço: %f \n", produto->preco);
+    printf("Tipo: %c \n", produto->tipo);
 }
 
 int main(void){
     Produto produto;
 
     leia(&produto);
+    imprima(&produto);
 
     return 0;
 }
