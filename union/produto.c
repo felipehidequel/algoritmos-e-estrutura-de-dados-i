@@ -24,7 +24,7 @@ typedef struct produto{
 
 // função que ler os dados de um produto
 void leia(Produto * produto){
-    char tipo;
+    char* tipo = (char*) malloc (sizeof(char));
     char n[MAX_CHARS];
     printf("Digite o nome do produto: \n");
     scanf(" %[^\n]", n);
@@ -34,18 +34,20 @@ void leia(Produto * produto){
     printf("Digite o tipo do produto [Alimento (A), Bebida(B) ou Eletronico (E)]: \n");
     scanf(" %c", tipo);
 
-    if(tipo == 'A'){
-        strcpy(produto->tipo.alimento, tipo);
-    }else if (tipo == 'B'){
-        strcpy(produto->tipo.bebida, tipo);
-    }else if(tipo == 'E'){
-        strcpy(produto->tipo.eletronico, tipo);
+    
+    if(strcmp(tipo, "A") == 0){
+        strcpy(&produto->tipo.alimento, tipo);
+    }else if (strcmp(tipo, "B") == 0){
+        strcpy(&produto->tipo.bebida, tipo);
+    }else if(strcmp(tipo, "E") == 0){
+        strcpy(&produto->tipo.eletronico, tipo);
     }else{
-        printf("Entrada invalida!");
+        printf("Entrada invalida!\n");
         exit(1);
     }
 }
 
+// função que imprime os dados de um produto
 void imprima(Produto * produto){
     printf("\tDados\n");
     printf("Nome: %s \n", produto->nome);
