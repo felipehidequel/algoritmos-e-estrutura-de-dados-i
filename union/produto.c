@@ -25,10 +25,6 @@ typedef struct produto{
 // função que ler os dados de um produto
 void leia(Produto * produto){
     char* tipo = (char*) malloc (sizeof(char));
-    char n[MAX_CHARS];
-    printf("Digite o nome do produto: \n");
-    scanf(" %[^\n]", n);
-    strcpy(produto->nome, n);
     printf("Digite o preço do produto: \n");
     scanf("%f", &produto->preco);
     printf("Digite o tipo do produto [Alimento (A), Bebida(B) ou Eletronico (E)]: \n");
