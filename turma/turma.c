@@ -105,9 +105,24 @@ void matricula_aluno(Turma *turma, int mat, char *nome)
 }
 
 void lanca_notas(Turma* turma){
-    for (int nota=0; nota < 3; nota++){
-        printf("Nota %d - %f\t", nota, turma->alunos->nota[nota]);
+   float sum = 0.0;
+   int nota = 0;
+   printf("Lançamento de notas para a turma %c:\n", turma->id);
+   for (int i = 0; i<MAX_VAGAS; i++){
+    if (turma->alunos[i] != NULL){
+        printf("Matricula: %d \nAluno: %s\n", turma->alunos[i]->mat, turma->alunos[i]->nome);
+        for (nota = 0; nota < 3; nota++){
+            printf("Digite a nota: %d ", nota+1);
+            scanf("%f", &turma->alunos[i]->notas[nota]);
+        }
+        for (nota = 0; nota < 3; nota++)
+        {
+            sum += turma->alunos[i]->notas[nota];
+        }
+        turma->alunos[i]->media = sum / 3;
     }
+   }
+   printf("Notas lançadas!\n");
 }
 
 
