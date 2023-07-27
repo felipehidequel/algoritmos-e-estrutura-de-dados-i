@@ -1,4 +1,7 @@
 #include "turma.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define MAX_VAGAS 2
 #define MAX_TURMAS 2
@@ -17,15 +20,6 @@ struct turma
     int vagas; /*Número de vagas ofertados por turma*/
     Aluno *alunos[MAX_VAGAS];
 };
-
-void freeTurma(Turma **turma, int nTurmas)
-{
-    for (int i = 0; i < nTurmas; i++)
-    {
-        free(turma[i]);
-    }
-    free(turma);
-}
 
 void cabecalho(void)
 {
@@ -104,106 +98,38 @@ void matricula_aluno(Turma *turma, int mat, char *nome)
     }
 }
 
-void lanca_notas(Turma* turma){
-   float sum = 0.0;
-   int nota = 0;
-   printf("Lançamento de notas para a turma %c:\n", turma->id);
-   for (int i = 0; i<MAX_VAGAS; i++){
-    if (turma->alunos[i] != NULL){
-        printf("Matricula: %d \nAluno: %s\n", turma->alunos[i]->mat, turma->alunos[i]->nome);
-        for (nota = 0; nota < 3; nota++){
-            printf("Digite a nota: %d ", nota+1);
-            scanf("%f", &turma->alunos[i]->notas[nota]);
-        }
-        for (nota = 0; nota < 3; nota++)
-        {
-            sum += turma->alunos[i]->notas[nota];
-        }
-        turma->alunos[i]->media = sum / 3;
-    }
-   }
-   printf("Notas lançadas!\n");
-}
-
-
-int main(void)
+void lanca_notas(Turma *turma)
 {
-    char id;
-    char nome[81];
-    Turma **turma = (Turma **)malloc(MAX_TURMAS * sizeof(Turma *));
-    if (turma == NULL)
+    float sum = 0.0;
+    int nota = 0;
+    printf("Lançamento de notas para a turma %c:\n", turma->id);
+    for (int i = 0; i < MAX_VAGAS; i++)
     {
-        printf("Erro ao alocar memoria para turma");
-        exit(1);
-    }
-    Turma *buscaTurma;
-    int nTurmas; // numero de turmas já cadastradas
-    int escolha, matricula;
-    escolha = nTurmas = matricula = 0;
-
-    cabecalho();
-    while (escolha != 6) // No caso da opção 6 ser escolhidam o programa será encerrado.
-    {
-        printf("\n\n\tMenu:\n1 - Criar turma\n2 - Listar turmas\n3 - Matricular aluno\n4 - Lancar notas\n5 - Listar alunos\n6 - Sair\n\nDigite sua opcao: ");
-        scanf("%d", &escolha);
-        switch (escolha)
+        if (turma->alunos[i] != NULL)
         {
-        case 1:
-            printf("Criando nova turma...");
-            printf("\nDigite um id: ");
-            scanf(" %c", &id);
-            if (nTurmas == MAX_TURMAS)
+            printf("Matricula: %d \nAluno: %s\n", turma->alunos[i]->mat, turma->alunos[i]->nome);
+            for (nota = 0; nota < 3; nota++)
             {
-                printf("Número maximo de turmas atingido!");
+                printf("Digite a nota: %d ", nota + 1);
+                scanf("%f", &turma->alunos[i]->notas[nota]);
             }
-            else if (procura_turma(turma, nTurmas, id) != NULL)
+            for (nota = 0; nota < 3; nota++)
             {
-                printf("A turma já existe!");
+                sum += turma->alunos[i]->notas[nota];
             }
-            else
-            {
-                turma[nTurmas] = cria_turma(id);
-                nTurmas++;
-                printf("Turma %c criada com sucesso!", id);
-            }
-            break;
-        case 2:
-            imprime_turmas(turma, nTurmas);
-            break;
-        case 3:
-            printf("Digite o id da turma: ");
-            scanf(" %c", &id);
-            buscaTurma = procura_turma(turma, nTurmas, id);
-            if (buscaTurma != NULL)
-            {
-                printf("Digite o nome: ");
-                scanf(" %[^\n]", nome);
-                printf("Digite a matricula: ");
-                scanf(" %d", &matricula);
-                matricula_aluno(buscaTurma, matricula, nome);
-            }
-            else
-            {
-                printf("Turma inexistente");
-            }
-            break;
-        case 4:
-            printf("Lançando notas...");
-            printf("\nDigite o id da turma: ");
-            scanf(" %c", &id);
-            buscaTurma = procura_turma(turma, nTurmas, id);
-            if(buscaTurma != NULL){
-                lanca_notas(buscaTurma);
-            }else{
-                printf("Turma inexistente!");
-            }
-            break;
-        default:
-            break;
+            turma->alunos[i]->media = sum / 3;
         }
     }
-
-    freeTurma(turma, nTurmas);
-
-    return 0;
+    printf("Notas lançadas!\n");
 }
+
+void imprime_alunos(Turma *turma)
+{
+    int vagasFilleds = MAX_TURMAS - turma->vagas;
+    for (int i = 0; i < vagasFilleds; i++)
+    {
+        printf("Nome: %s\tMatricula: %d\tMedia: %f\n", turma->alunos[i]->nome, turma->alunos[i]->mat, turma->alunos[i]->media);
+    }
+}
+
+
