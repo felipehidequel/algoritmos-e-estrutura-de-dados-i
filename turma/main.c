@@ -90,6 +90,7 @@ int main(void)
             {
                 printf("Turma inexistente!");
             }
+            break;
         default:
             break;
         }

@@ -57,7 +57,7 @@ Turma *procura_turma(Turma **turma, int nTurmas, char id)
     int indice = -1;
     for (int t = 0; t < nTurmas; t++)
     {
-        if (turma[t]->id == id)
+        if (strcmp(id, turma[t]->id) == 0)
         {
             indice = t;
         }
