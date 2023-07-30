@@ -33,24 +33,23 @@ Fruta *cadastra(char *nome);
 /*
     Listar todas as frutas cadastradas: Imprimir na tela todas as informações das frutas cadastradas até o momento.
 */
-void listar(Fruta *frutas, int nFrutas);
+void listar(Fruta **frutas, int nFrutas);
 /*
-    Buscar fruta por nome: 
+    Buscar fruta por nome:
     Função busca no array de structs por todas as frutas com esse nome e imprimir suas informações.
 */
-Fruta* buscar(char* nome, int nFrutas);
-
+Fruta *buscar(char *nome, int nFrutas);
 
 int main(void)
 {
     Fruta **frutas = allocFruta();
     char nome[21];
-    int escolha=0, nFrutas = 0;
+    int escolha = 0, nFrutas = 0;
 
-    while (escolha != 3)//se o usuario digite 3, o programa é encerrado
+    while (escolha != 3) // se o usuario digite 3, o programa é encerrado
     {
-        printf("Menu:\n 0 - Cadastrar nova fruta\n 1 - Listar frutas\n 2 - Buscar fruta\n 3 - Sair\n");
-        scanf("%d" ,&escolha);
+        printf("\nMenu:\n 0 - Cadastrar nova fruta\n 1 - Listar frutas\n 2 - Buscar fruta\n 3 - Sair\n");
+        scanf("%d", &escolha);
 
         switch (escolha)
         {
@@ -60,20 +59,29 @@ int main(void)
             scanf(" %[^\n]", nome);
             if (nFrutas == MAX_FRUTAS)
             {
-                printf("Número maximo de frutas cadastradas atingido!");
+                printf("Número maximo de frutas cadastradas atingido!\n");
             }
-            else{
+            else
+            {
                 frutas[nFrutas] = cadastra(nome);
                 nFrutas++;
             }
-            
+
             break;
-        
+        case 1:
+            if (nFrutas == 0)
+            {
+                printf("Nenhuma fruta cadastrada\n");
+            }
+            else
+            {
+                listar(frutas, nFrutas);
+            }
+            break;
         default:
             break;
         }
     }
-    
 
     return 0;
 }
@@ -90,16 +98,16 @@ struct fruta
     int quantidade;
 };
 
-Fruta* cadastra(char *nome)
+Fruta *cadastra(char *nome)
 {
-    Fruta* f = (Fruta*) malloc (sizeof(Fruta));
-     if (f == NULL)
+    Fruta *f = (Fruta *)malloc(sizeof(Fruta));
+    if (f == NULL)
     {
         printf("Erro ao alocar memoria para frutas");
         exit(1);
     }
     strcpy(f->nome, nome);
-    
+
     printf("Digite a cor da fruta: ");
     scanf(" %[^\n]", f->cor);
     printf("Digite a sabor da fruta: ");
@@ -108,4 +116,13 @@ Fruta* cadastra(char *nome)
     scanf("%d", &f->quantidade);
 
     return f;
+}
+
+void listar(Fruta **frutas, int nFrutas)
+{
+    for (int fruta = 0; fruta < nFrutas; fruta++)
+    {
+        Fruta *f = frutas[fruta];
+        printf("Nome: %s\nCor: %s\nSabor: %s\nQuantidade: %d\n", f->nome, f->cor, f->sabor, f->quantidade);
+    }
 }
