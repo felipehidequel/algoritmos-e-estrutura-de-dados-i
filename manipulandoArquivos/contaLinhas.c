@@ -13,7 +13,7 @@ int main(void){
     }
 
     while((c = fgetc(fp)) != EOF){
-        printf("%c", &c);
+        printf("%c", c);
         if(c == '\n')
             nLinhas++;
     }
