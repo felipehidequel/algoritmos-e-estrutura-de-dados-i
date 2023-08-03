@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*Exeption: erro ao abrir arquivo*/
+/*Exception: erro ao abrir arquivo*/
 void isOpen(FILE *arquivo, const char *nome)
 {
     if (arquivo == NULL)
