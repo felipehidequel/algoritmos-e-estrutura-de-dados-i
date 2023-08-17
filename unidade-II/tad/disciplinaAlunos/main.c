@@ -1,7 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "aluno.h"
-#include "disciplina.h"
+// #include "aluno.h"
+#include "aluno.c"
+// #include "disciplina.h"
+
+int verificaCodigo(int *codigos, int codigo, int nDisci){
+    for (int i=0; i < nDisci; i++){
+        if(codigo == codigos[i])return -1;
+    }
+    return 1;
+}
 
 int main()
 {
@@ -12,26 +20,39 @@ int main()
     char nomeA[101], nomeD[21];
     Aluno *meuAluno;
 
+    int matriculas[10];
+    int codigos[10];
+
     while (escolha != 5)
     {
+        printf("\nMenu:");
         printf("\n1 - criar disciplina\n2 - cadastrar aluno\n3 - matricular aluno em disciplina\n4 - imprimir alunos\n5 - sair\n");
+        printf("\nDigite a ação desejada: ");
         scanf("%d", &escolha);
         switch (escolha)
         {
         case 1:
             if (nDisci >= 10)
             {
-                printf("Limite de disciplinas registradas alcançado!");
+                printf("Limite de disciplinas registradas alcançado!\n");
                 break;
             }
-            printf("Digite o nome da disciplina: \n");
+            printf("Digite o nome da disciplina: ");
             scanf(" %[^\n]", nomeD);
-            printf("Digite o código da disciplina: \n");
-            scanf("%d", &codigo);
+            while(1){
+                printf("Digite o código da disciplina: ");
+                scanf("%d", &codigo);
+                if(verificaCodigo(codigos, codigo, nDisci) == -1){
+                    printf("O codigo informado já está em uso! Tente novamente.\n");
+                }else{
+                    break;
+                }
+            }
             disciplinas[nDisci] = criaDisciplina(nomeD, codigo);
+            codigos[nDisci] = codigo;
             nDisci++;
 
-            printf("Disciplina %s criada!\n", nomeD);
+            printf("\nDisciplina %s criada!\n", nomeD);
             break;
 
         case 2:
@@ -40,17 +61,27 @@ int main()
                 printf("Número limite de alunos atingido!\n");
                 break;
             }
-            printf("Digite o nome do aluno: \n");
+            printf("Digite o nome do aluno: ");
             scanf(" %[^\n]", nomeA);
-            printf("Digite o numero de matricula: \n");
-            scanf("%d", &matricula);
+            while(1){
+                printf("Digite o numero de matricula: ");
+                scanf("%d", &matricula);
+                if (matricula_valida(matriculas, matricula, nAlunos) == -1)
+                {
+                    printf("Matricula informada já está em uso! Tente novamente.\n");
+                }
+                else{
+                    break;
+                }            
+            }
             alunos[nAlunos] = cria_aluno(nomeA, matricula);
-            nAlunos++;
-            printf("Aluno cadastrado!\n");
+            matriculas[nAlunos] = matricula;
+            nAlunos++;            
+            printf("\nAluno cadastrado!\n");
             break;
 
         case 3:
-            printf("Digite o número de matricula do aluno: \n");
+            printf("Digite o número de matricula do aluno: ");
             scanf("%d", &matricula);
             int aluno = buscaAluno(matricula, nAlunos, alunos);
             if (aluno == -1)
@@ -64,12 +95,23 @@ int main()
             int disciplina = buscarDisciplina(codigo, nDisci, disciplinas);
             if (disciplina == -1)
             {
-                printf("Disciplina não encontrada\n");
+                printf("Disciplina não encontrada!\n");
+                break;
+            }
+
+            // verifica se o aluno já está matriculado nessa disciplina
+            Disciplina** d = alunos[aluno]->disciplinas;
+            int c[10];
+            for (int i; i < alunos[aluno]->num_disciplinas; i++){
+                c[i] = alunos[aluno]->disciplinas[i]->codigo;                
+            }
+            if((verificaCodigo(c, codigo, alunos[aluno]->num_disciplinas)) == -1){
+                printf("O Aluno já está matriculado nessa disciplina!\n");
                 break;
             }
 
             matricula_disciplina(alunos[aluno], disciplinas[disciplina]);
-            printf("Aluno matriculado!\n");
+            printf("\nAluno matriculado!\n");
             break;
 
         case 4:

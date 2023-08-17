@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "disciplina.h"
 
 
 struct disciplina
@@ -17,7 +18,7 @@ Disciplina *criaDisciplina(char *nome, int codigo){
         exit(1);
     }
     
-    strcpy(nome, d->nome);
+    strcpy(d->nome, nome);
     d->codigo = codigo;
 
     return d;

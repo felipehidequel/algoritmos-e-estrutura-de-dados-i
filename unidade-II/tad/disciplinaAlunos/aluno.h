@@ -36,4 +36,12 @@ int buscaAluno(int matricula, int nAlunos, Aluno **alunos);
 */
 void imprimeA(Aluno **alunos, int nAlunos);
 
+/*Verifica se a matricula informada já está em uso, retornando -1 se for esse o caso.
+** @param matriculas: vetor de inteiros contendo todas as matriculas
+** @param matricula: Matricula a ser testada
+** @param nAlunos: quantidade de alunos matriculados
+*/
+int matricula_valida(int *matriculas, int matricula, int nAlunos);
+
+
 #endif // ALUNO_H

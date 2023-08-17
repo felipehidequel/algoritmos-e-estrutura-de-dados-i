@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "aluno.h"
+#include "disciplina.c"
 
 struct aluno
 {
@@ -20,7 +21,7 @@ Aluno* cria_aluno(char *nome, int matricula){
         exit(1);
     }
     
-    strcpy(nome, a->nome);
+    strcpy(a->nome, nome);
     a->matricula = matricula;
     a->num_disciplinas = 0;
 
@@ -58,17 +59,25 @@ void imprimeA(Aluno **alunos, int nAlunos){
         nDisci = alunos[aluno]->num_disciplinas;
         printf("Nome: %s\n", alunos[aluno]->nome);
         printf("Matricula: %d\n", alunos[aluno]->matricula);
-        printf("Disciplinas Matriculado: %d\n", nDisci);
-        printf("Disciplinas: \n");
-        for (int i = 0; i < nDisci; i++)
+        printf("Disciplinas matriculado(a): %d\n\n", nDisci);
+        if (nDisci > 0)
         {
-            printf("%s\t", alunos[aluno]->disciplinas[i]->nome);
-            printf("%d\n", alunos[aluno]->disciplinas[i]->codigo);
-        }
-        
+            printf("Disciplina \tCodigo\n");
+            for (int i = 0; i < nDisci; i++)
+            {
+                printf("%s\t\t", alunos[aluno]->disciplinas[i]->nome);
+                printf("%d\n\n", alunos[aluno]->disciplinas[i]->codigo);
+            }
+        }           
     }
 }
 
+int matricula_valida(int *matriculas, int matricula, int nAlunos){
+    for (int i = 0; i < nAlunos; i++ ){
+        if (matricula == matriculas[i]) return -1;
+    }
+    return 1;
+}
 
 void exclui_aluno(Aluno* aluno){
     free(aluno);
