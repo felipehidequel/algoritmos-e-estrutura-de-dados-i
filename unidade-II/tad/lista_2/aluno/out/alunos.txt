@@ -1,0 +1,5 @@
+ale	 2
+alicia	 0
+bruno	 0
+felipe	 7
+heitor	10
