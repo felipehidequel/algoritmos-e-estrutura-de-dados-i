@@ -21,4 +21,11 @@ int buscarDisciplina(int codigo, int nDisciplinas, Disciplina** disciplinas);
 */
 void excluiDisciplina(Disciplina *disciplina);
 
+/* Verifica se o codigo de uma disciplina já foi cadastrado retornando -1 para sim
+** @param codigos: vetor de inteiros que vai conter todos os codigos cadastrados a serem verificados
+** @param codigo: o codigo que vai ser verificado
+** @param nDisci: numero de disciplinas
+*/
+int verificaCodigo(int *codigos, int codigo, int nDisci);
+
 #endif // DISCIPLINA

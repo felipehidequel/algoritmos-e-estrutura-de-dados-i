@@ -35,6 +35,12 @@ int buscarDisciplina(int codigo, int nDisciplinas, Disciplina** disciplinas){
     return -1;
 }
 
+int verificaCodigo(int *codigos, int codigo, int nDisci){
+    for (int i=0; i < nDisci; i++){
+        if(codigo == codigos[i])return -1;
+    }
+    return 1;
+}
 
 void excluiDisciplina(Disciplina *disciplina){
     free(disciplina);

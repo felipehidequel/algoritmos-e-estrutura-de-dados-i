@@ -4,12 +4,7 @@
 #include "aluno.c"
 // #include "disciplina.h"
 
-int verificaCodigo(int *codigos, int codigo, int nDisci){
-    for (int i=0; i < nDisci; i++){
-        if(codigo == codigos[i])return -1;
-    }
-    return 1;
-}
+
 
 int main()
 {
@@ -18,7 +13,6 @@ int main()
     int nDisci = 0, nAlunos = 0;
     int escolha = 0, codigo, matricula;
     char nomeA[101], nomeD[21];
-    Aluno *meuAluno;
 
     int matriculas[10];
     int codigos[10];
@@ -100,7 +94,9 @@ int main()
             }
 
             // verifica se o aluno já está matriculado nessa disciplina
-            Disciplina** d = alunos[aluno]->disciplinas;
+            /*Nesse trecho, o vetor c[10] vai receber o codigos das disciplinas que o aluno já está
+            * matriculado. Com essa informação é possivel verificar se ele já está matriculado na disciplina.
+            */
             int c[10];
             for (int i; i < alunos[aluno]->num_disciplinas; i++){
                 c[i] = alunos[aluno]->disciplinas[i]->codigo;                
