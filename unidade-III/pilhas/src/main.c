@@ -10,7 +10,7 @@ int main(){
 
     pilha_imprime(p);
     printf("Removendo o ultimo elemento da pilha...\n");
-    pilha_pop(p);
+    int elemento_pop = pilha_pop(p);
 
     pilha_imprime(p);
 

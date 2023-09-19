@@ -13,7 +13,7 @@ Pilha *pilha_cria(void)
     return p;
 }
 
-void pilha_push(Pilha *p, float v)
+void pilha_push(Pilha *p, int v)
 {
     Lista *n = (Lista *)malloc(sizeof(Lista));
     n->info = v;
@@ -21,10 +21,10 @@ void pilha_push(Pilha *p, float v)
     p->primeiro = n;
 }
 
-float pilha_pop(Pilha *p)
+int pilha_pop(Pilha *p)
 {
     Lista *t;
-    float v;
+    int v;
     if (pilha_vazia(p))
     {
         printf("Pilha Vazia.\n");
