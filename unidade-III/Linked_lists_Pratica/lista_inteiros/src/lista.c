@@ -70,6 +70,23 @@ Lista *lst_insere(Lista *l, int n)
 
     return novo;
 }
+// Lista *lst_busca(Lista *l, int n)
+// {
+//     Lista *p; // Ponteiro para pecorrer l
+
+//     for (p = l; p != NULL; p = p->prox)
+//         if (p->info == n)
+//             return p; // busca sequencial por n
+//     return NULL;      // nó não encontrado
+// }
+void lst_imprime(Lista *l)
+{
+    Lista *p;
+
+    for (p = l; p != NULL; p = p->prox)
+        printf("Info = %d\n", p->info);
+}
+
 Lista *lst_busca(Lista *l, int n)
 {
     Lista *p; // Ponteiro para pecorrer l
@@ -78,11 +95,4 @@ Lista *lst_busca(Lista *l, int n)
         if (p->info == n)
             return p; // busca sequencial por n
     return NULL;      // nó não encontrado
-}
-void lst_imprime(Lista *l)
-{
-    Lista *p;
-
-    for (p = l; p != NULL; p = p->prox)
-        printf("Info = %d\n", p->info);
 }
