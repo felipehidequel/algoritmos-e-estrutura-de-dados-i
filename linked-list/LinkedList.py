@@ -81,6 +81,15 @@ class LinkedList:
         
         raise Exception("Node with data '%s' not found" % target_node_data)
 
+    def get(self, index):
+        if self.head is None:
+            raise Exception("List is empty")
+        
+        for i,node in enumerate(self):
+            if i == index:
+                return node
+        raise Exception("Node with index '%s' not found" % index)
+    
 
 class Node:
     def __init__(self,data) -> None:
@@ -98,4 +107,7 @@ if __name__=='__main__':
     llist.add_last(Node("L"))
     llist.add_before("E", Node("E"))
     llist.remove_node("E")
+    print(llist.get(1))
+    reverse_ll = llist.reverse()
     print(llist)
+    print(reverse_ll)
